@@ -2,7 +2,7 @@
 # SConstruct
 #
 '''
-SConstruct for Avere-nfs3py
+SConstruct for hpc-cache-nfs3py
 '''
 import errno
 import os
@@ -51,12 +51,12 @@ env['BUILDERS']['InstallAsReadOnly'] = env.Builder(action=env.Action(InstallAsRe
 exportfiles = ('bin/nfs3_client_test.py',
                'bin/nfs3_fh_from_path.py',
                'bin/nfs3_path_from_fh.py',
-               'lib/avere/nfs3py/nfs3.py',
-               'lib/avere/nfs3py/nfs3_util.py',
-               'lib/avere/nfs3py/rpc_rfc1057.py',
+               'lib/nfs3py/nfs3.py',
+               'lib/nfs3py/nfs3_util.py',
+               'lib/nfs3py/rpc_rfc1057.py',
               )
 
-tarfile_name = 'Avere-nfs3py.tar.gz'
+tarfile_name = 'hpc-cache-nfs3py.tar.gz'
 tarfile_path = '$EXPORTROOT/' + tarfile_name
 
 exportnodes = [env.InstallAsReadOnly("$EXPORTUSR/"+relpath, relpath) for relpath in exportfiles]

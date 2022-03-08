@@ -5,7 +5,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 #
 '''
-This script knows how to generate artifacts for the Avere-nfs3py repo.
+This script knows how to generate artifacts for the hpc-cache-nfs3py repo.
 This may execute inside or outside a build pipeline.
 '''
 
@@ -22,9 +22,9 @@ import subprocess
 import sys
 import traceback
 
-class Averenfs3pyArtifacts():
+class nfs3pyArtifacts():
     '''
-    Manage artifacts generation for the Avere-nfs3py repo
+    Manage artifacts generation for the hpc-cache-nfs3py repo
     '''
     def __init__(self, root, working_path, output_path, version=None, logger=None):
         self.root = root
@@ -308,7 +308,7 @@ class Averenfs3pyArtifacts():
 
         # Run setup.py to generate the package
         self._install_cmd("%s -B %s sdist" % (self.python_exe, shlex.quote(setup_py)))
-        nfs3py_tgz = "Avere-nfs3py-%s.tar.gz" % self.version
+        nfs3py_tgz = "hpc-cache-nfs3py-%s.tar.gz" % self.version
         src = os.path.join(self.working_path_build, 'dist', nfs3py_tgz)
         dst = os.path.join(self.output_path, nfs3py_tgz)
         shutil.copyfile(src, dst)
@@ -359,7 +359,7 @@ class Averenfs3pyArtifacts():
         self._setup_empty_path(self.working_path)
         self._setup_empty_path(self.working_path_build)
         for src, dst in (self._srcdst('bin'),
-                         (os.path.join(self.root, 'lib', 'avere'), os.path.join(self.working_path_build, 'avere')),
+                         (os.path.join(self.root, 'lib'), os.path.join(self.working_path_build)),
                         ):
             logger.info("copy %s to %s", src, dst)
             shutil.copytree(src, dst, symlinks=True)
@@ -445,5 +445,5 @@ class Averenfs3pyArtifacts():
         raise SystemExit(1)
 
 if __name__ == '__main__':
-    Averenfs3pyArtifacts.main(*sys.argv[1:])
+    nfs3pyArtifacts.main(*sys.argv[1:])
     raise SystemExit(1)

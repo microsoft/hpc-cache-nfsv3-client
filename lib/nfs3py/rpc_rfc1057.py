@@ -56,7 +56,7 @@ class LoggerState():
     '''
     Encapsulate logger state and operations
     '''
-    LOGGER_NAME_DEFAULT = 'avere.rpc_rfc1057'
+    LOGGER_NAME_DEFAULT = 'rpc_rfc1057'
     LOG_LEVEL = logging.DEBUG
     _LOG_FORMAT_BASE = '%(asctime)s %(levelname).3s'
     #_LOG_FORMAT_BASE = '%(asctime)s %(levelname).3s %(name)s:%(module)s:%(funcName)s:%(lineno)s:'

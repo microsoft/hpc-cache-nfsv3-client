@@ -48,12 +48,12 @@ jobs:
 
   - task: TwineAuthenticate@1
     inputs:
-      artifactFeed: Avere-internal-python
-    displayName: 'authenticate twine for Avere-internal-python'
+      artifactFeed: hpc-cache-internal-python
+    displayName: 'authenticate twine for hpc-cache-internal-python'
     condition: succeeded()
 
   - script: |
-      twine upload -r Avere-internal-python --config-file $(PYPIRC_PATH) $(Build.ArtifactStagingDirectory)/output/Avere-nfs3py-$(nfs3py_version.release).tar.gz
+      twine upload -r hpc-cache-internal-python --config-file $(PYPIRC_PATH) $(Build.ArtifactStagingDirectory)/output/hpc-cache-nfs3py-$(nfs3py_version.release).tar.gz
     # displayName is evaluated server-side, so do not use anything requiring recursive expansion
     displayName: twine upload $(nfs3py_version.major).$(nfs3py_version.minor).$(nfs3py_version.patch)
     condition: succeeded()
