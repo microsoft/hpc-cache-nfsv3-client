@@ -1,25 +1,29 @@
-# TODO: The maintainer of this repo has not yet edited this file
+---
+title: Open a support ticket for Azure HPC Cache
+description: How to open a help request for Azure HPC Cache 
+author: ronhogue
+ms.service: hpc-cache
+ms.topic: how-to
+ms.date: 03/11/2022
+ms.author: rohogue
+---
 
-**REPO OWNER**: Do you want Customer Service & Support (CSS) support for this product/project?
+# Contact support for help with Azure HPC Cache
 
-- **No CSS support:** Fill out this template with information about how to file issues and get help.
-- **Yes CSS support:** Fill out an intake form at [aka.ms/spot](https://aka.ms/spot). CSS will work with/help you to determine next steps. More details also available at [aka.ms/onboardsupport](https://aka.ms/onboardsupport).
-- **Not sure?** Fill out a SPOT intake as though the answer were "Yes". CSS will help you decide.
+The best way to get help with Azure HPC Cache is to use the Azure portal to open a support ticket.
 
-*Then remove this first heading from this SUPPORT.MD file before publishing your repo.*
+Navigate to your cache instance, then click the **New support request** link that appears at the bottom of the sidebar.
 
-# Support
+To open a ticket when you do not have an active cache, use the main Help + support page from the Azure portal. Open the portal menu from the control at the top left of the screen, then scroll to the bottom and click **Help + support**.
 
-## How to file issues and get help  
+Choose **New support request** and select **Technical** for help specific to Azure HPC Cache.
 
-This project uses GitHub Issues to track bugs and feature requests. Please search the existing 
-issues before filing new issues to avoid duplicates.  For new issues, file your bug or 
-feature request as a new Issue.
+Select your subscription from the list.
 
-For help and questions about using this project, please **REPO MAINTAINER: INSERT INSTRUCTIONS HERE 
-FOR HOW TO ENGAGE REPO OWNERS OR COMMUNITY FOR HELP. COULD BE A STACK OVERFLOW TAG OR OTHER
-CHANNEL. WHERE WILL YOU HELP PEOPLE?**.
+To find the Azure HPC Cache service, click the **All services** button and search for HPC.
 
-## Microsoft Support Policy  
+![Screenshot of the support request - Basics tab, partly filled out as described](media/hpc-cache-support-request.png)
 
-Support for this **PROJECT or PRODUCT** is limited to the resources listed above.
+Fill out the rest of the fields with your information and preferences, then submit the ticket when you are ready.
+
+After you submit the request, you will receive a confirmation email with a ticket number. A support staff member will contact you about the request.
