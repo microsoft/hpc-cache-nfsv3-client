@@ -1,0 +1,59 @@
+variables:
+  nfs3py_version.major: 1
+  nfs3py_version.minor: 1
+  nfs3py_version.majorminor: $(nfs3py_version.major).$(nfs3py_version.minor)
+  nfs3py_version.patch: $[counter(variables['nfs3py_version.majorminor'], 0)]
+  nfs3py_version.release: $(nfs3py_version.majorminor).$(nfs3py_version.patch)
+  # We could use the build number like this. That gives a more obvious
+  # mapping between builds and versions at the cost of ugly-looking
+  # versions.
+  #   nfs3py_version: 2.$(Build.BuildNumber)
+
+jobs:
+- job: DoEverything
+  pool:
+    vmImage: 'Ubuntu 16.04'
+
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
+      architecture: 'x64'
+
+  # Python script
+  # Run a Python file or inline script
+  - task: PythonScript@0
+    displayName: generate_artifacts.py
+    inputs:
+      scriptSource: filePath
+      scriptPath: $(Build.SourcesDirectory)/generate_artifacts.py
+      arguments: $(Build.BinariesDirectory)/work $(Build.ArtifactStagingDirectory)/output --version=$(nfs3py_version.release)
+      workingDirectory: $(Build.SourcesDirectory)
+      failOnStderr: false
+      condition: succeeded()
+
+  - task: ComponentGovernanceComponentDetection@0
+    displayName: 'Component Governance component detection'
+    inputs:
+      scanType: 'Register'
+      verbosity: 'Verbose'
+      alertWarningLevel: 'High'
+    condition: always()
+
+  - script: |
+      pip install twine
+      pip install wheel
+    displayName: 'install twine'
+    condition: succeeded()
+
+  - task: TwineAuthenticate@1
+    inputs:
+      artifactFeed: Avere-internal-python
+    displayName: 'authenticate twine for Avere-internal-python'
+    condition: succeeded()
+
+  - script: |
+      twine upload -r Avere-internal-python --config-file $(PYPIRC_PATH) $(Build.ArtifactStagingDirectory)/output/Avere-nfs3py-$(nfs3py_version.release).tar.gz
+    # displayName is evaluated server-side, so do not use anything requiring recursive expansion
+    displayName: twine upload $(nfs3py_version.major).$(nfs3py_version.minor).$(nfs3py_version.patch)
+    condition: succeeded()
