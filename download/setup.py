@@ -22,15 +22,15 @@ except ImportError:
 
 NAME = 'hpccache-nfs3py'
 
-BINFILES = (os.path.join('bin', 'nfs3_client_test.py'),
-            os.path.join('bin', 'nfs3_fh_from_path.py'),
-            os.path.join('bin', 'nfs3_path_from_fh.py'),
+BINFILES = (os.path.join('examples', 'nfs3_client_test.py'),
+            os.path.join('examples', 'nfs3_fh_from_path.py'),
+            os.path.join('examples', 'nfs3_path_from_fh.py'),
            )
 
 # Files from lib/ to include in the .tgz artifact
-LIBFILES = (os.path.join('hpccache', 'nfs3py', 'nfs3.py'),
-            os.path.join('hpccache', 'nfs3py', 'nfs3_util.py'),
-            os.path.join('hpccache', 'nfs3py', 'rpc_rfc1057.py'),
+LIBFILES = (os.path.join('lib', 'hpccache', 'nfs3py', 'nfs3.py'),
+            os.path.join('lib', 'hpccache', 'nfs3py', 'nfs3_util.py'),
+            os.path.join('lib', 'hpccache', 'nfs3py', 'rpc_rfc1057.py'),
            )
 
 DESC_SHORT = 'HPC Cache NFS3 Python client'
