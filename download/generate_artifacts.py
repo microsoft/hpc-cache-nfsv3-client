@@ -3,6 +3,7 @@
 # generate_artifacts.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT license.
 #
 '''
 This script knows how to generate artifacts for the Avere-nfs3py repo.

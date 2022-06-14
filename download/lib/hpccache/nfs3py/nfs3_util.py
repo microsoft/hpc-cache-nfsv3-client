@@ -3,6 +3,7 @@
 # lib/hpccache/nfs3py/nfs3_util.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT license.
 #
 '''
 Various utility / helper operations useful for nfs3 clients

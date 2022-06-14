@@ -2,6 +2,7 @@
 # lib/hpccache/nfs3py/rpc_rfc1057.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT license.
 #
 # This was originally derived from the Demo/rpc code distributed
 # with Python 2.7.11. It has since been updated for Python3

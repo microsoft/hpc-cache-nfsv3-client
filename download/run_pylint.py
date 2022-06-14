@@ -3,7 +3,8 @@
 # run_pylint.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
-#
+# Licensed under the MIT license.
+# #
 '''
 Recursively scan for .py files starting in the current directory.
 Read pylint_exclude.txt for files to exclude.
