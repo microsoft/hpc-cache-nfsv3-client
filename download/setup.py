@@ -3,6 +3,7 @@
 # setup.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT license.
 #
 '''
 setuptools script to generate an installable module for hpccache-nfs3py

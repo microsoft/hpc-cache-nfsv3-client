@@ -3,6 +3,7 @@
 # lib/hpccache/nfs3py/nfs3.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT license.
 #
 # Naming matches RFC 1813 as closely as possible to make it clear how the
 # spec maps to the code. Structures are slightly different; to keep things
