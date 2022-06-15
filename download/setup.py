@@ -26,6 +26,7 @@ NAME = 'hpccache-nfs3py'
 BINFILES = (os.path.join('examples', 'nfs3_client_test.py'),
             os.path.join('examples', 'nfs3_fh_from_path.py'),
             os.path.join('examples', 'nfs3_path_from_fh.py'),
+            os.path.join('examples', 'flush_file.py'),
            )
 
 # Files from lib/ to include in the .tgz artifact
