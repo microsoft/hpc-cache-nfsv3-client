@@ -20,7 +20,7 @@ This repository contains the necessary code libraries and a script named flush_f
 
 The script requires a stable Python 3 distribution to run. You can set up your client by using either of these options:
 
-* Run the 'setup.py' file included in the repository to install and configure the needed software.
+* Use the 'setup.py' file included in the repository to install and configure the needed software. For example, switch to the ``hpc-cache-nfsv3-client`` directory after downloading the repository and use ``pip install .`` ***[ ? - is this correct? - ? ]***
 
 * Use the software included in the repository directly. Point your Python path to the downloaded repository location:
 
@@ -29,21 +29,57 @@ The script requires a stable Python 3 distribution to run. You can set up your c
   export PATH=<hpc-cache-nfsv3-client/bin>:$PATH
   ```
 
+    ***[ ? - I think some other setup is needed here - ? ]***
+
 ## Overview
 
 The script 'flush_file.py' tells the HPC Cache to write specific files back to the long-term storage system.
 
+You must stream the list of files to the script on stdin. Files can be specified individually, programmatically, or as a text document containing a newline-separated list of files. Read [Specify the files to write](#specify-the-files-to-write) for more information and examples.
+
 ```bash
-[user@hostname ~]$ python3 flush_file.py --help
-
-usage: flush_file.py [-h] [--threads THREADS] [--timeout TIMEOUT] [--sync] [--verbose] export server
-
-File Flush Utility
- ...
-
+$ ls *.txt | python3 flush_file.py <export_name> <server_IP>
 ```
 
-The [Usage](#usage) section below has details about how to use the script.
+Read the [Usage](#usage) section below for details about the required and optional parameters.
+
+## Specify the files to write
+
+``flush_file.py`` accepts one or more file paths, separated by new lines, on the standard input stream. There are a variety of ways to specify files using shell scripting. Here are some examples.
+
+* Pass a single file name:
+
+  ``echo "/outputdir/file1" | flush_file.py <export> <IP address>``
+
+* Pass a list of files to write:
+
+  ``cat flushlist | flush_file.py <export> <IP address>``
+  
+  In this example, "flushlist" is a text file with one file per line:
+
+  ```
+      /target1/testfile1
+      /target1/output/result.txt
+      /target1/output/schedule.sas
+  ```
+
+Each path specifies a single file. This utility does not support directory recursion and does not accept wildcard expressions.
+
+Remember to specify files using their paths in the HPC Cache namespace. The flush_file.py utility creates its own connection to the HPC Cache, it doesn't use the client's mount point.
+
+### Help with paths
+
+To clarify which path to use in the *export* value, this table lists the various local and virtual paths for an example file.
+
+The flush_file.py script mounts the HPC Cache system at ``/``. Even if you run flush_file.py from a client that has previously mounted the HPC Cache, the flush utility uses its own path, not the client's mount point.
+
+| Description | File path |
+|----------|-----------|
+|File that you want to write: | result/output3.txt|
+|File path on the compute client: | /mnt/cache/NAS_12_exp5/result/output3.txt|
+|Path on the HPC Cache: | /NAS_12_exp5/result/output3.txt|
+|Storage system export: | /export5|
+|Path to use in flush_file.py: | /NAS_12_exp5/result/output3.txt|
 
 ## Usage
 
@@ -112,44 +148,6 @@ Flush one particular file on the client (/testdir/testfile) to the export /1_1_1
 ```bash
 echo /testdir/testfile | python3 bin/flush_file.py /1_1_1_0 203.0.113.87
 ```
-
-## Specify the files to write
-
-``flush_file.py`` accepts one or more file paths, separated by new lines. There are a variety of ways to specify files using shell scripting. Here are some examples.
-
-* Pass a single file name:
-
-  ``echo "/outputdir/file1" | flush_file.py <export> <IP address>``
-
-* Pass a list of files to write:
-
-  ``cat flushlist | flush_file.py <export> <IP address>``
-  
-  In this example, "flushlist" is a text file with one file per line:
-
-  ```
-      /target1/testfile1
-      /target1/output/result.txt
-      /target1/output/schedule.sas
-  ```
-
-Each path specifies a single file. This utility does not support directory recursion and does not accept wildcard expressions.
-
-Remember to specify files using their paths in the HPC Cache namespace. The flush_file.py utility creates its own connection to the HPC Cache, it doesn't use the client's mount point.
-
-### Help with paths
-
-To clarify which path to use in the *export* value, this table lists the various local and virtual paths for an example file.
-
-The flush_file.py script mounts the HPC Cache system at ``/``. Even if you run flush_file.py from a client that has previously mounted the HPC Cache, the flush utility uses its own path, not the client's mount point.
-
-| Description | File path |
-|----------|-----------|
-|File that you want to write: | result/output3.txt|
-|File path on the compute client: | /mnt/cache/NAS_12_exp5/result/output3.txt|
-|Path on the HPC Cache: | /NAS_12_exp5/result/output3.txt|
-|Storage system export: | /export5|
-|Path to use in flush_file.py: | /NAS_12_exp5/result/output3.txt|
 
 ## Contributing
 
