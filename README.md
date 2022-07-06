@@ -18,9 +18,13 @@ Clone this hpc-cache-nfsv3-client repository on the client (or clients) that wil
 
 This repository contains the necessary code libraries and a script named flush_file.py.
 
-The script requires a stable Python 3 distribution to run. You can set up your client by using either of these options:
+The script requires a stable Python 3 distribution to run. You have a variety of options for setting up the script and its libraries on your client machines:
 
-* Use the 'setup.py' file included in the repository to install and configure the needed software. For example, switch to the ``hpc-cache-nfsv3-client`` directory after downloading the repository and use ``pip install .`` ***[ ? - is this correct? - ? ]***
+* Use the 'setup.py' file included in the repository to install and configure the needed software. There are several methods to do this:
+
+  * Use ``python3 setup.py build`` to install libraries and create an executable script in the local directory.
+  * Use ``python3 setup.py install`` to install libraries and an executable script in the appropriate paths in ``/usr/local``.
+  * Use ``pip install .`` from the ``hpc-cache-nfsv3-client`` directory. (Other convenient software installers also can be used.)
 
 * Use the software included in the repository directly. Point your Python path to the downloaded repository location:
 
@@ -29,8 +33,6 @@ The script requires a stable Python 3 distribution to run. You can set up your c
   export PATH=<hpc-cache-nfsv3-client/bin>:$PATH
   ```
 
-    ***[ ? - I think some other setup is needed here - ? ]***
-
 ## Overview
 
 The script 'flush_file.py' tells the HPC Cache to write specific files back to the long-term storage system.
@@ -38,7 +40,7 @@ The script 'flush_file.py' tells the HPC Cache to write specific files back to t
 You must stream the list of files to the script on stdin. Files can be specified individually, programmatically, or as a text document containing a newline-separated list of files. Read [Specify the files to write](#specify-the-files-to-write) for more information and examples.
 
 ```bash
-$ ls *.txt | python3 flush_file.py <export_name> <server_IP>
+$ cat *.txt | python3 flush_file.py <export_name> <server_IP>
 ```
 
 Read the [Usage](#usage) section below for details about the required and optional parameters.
