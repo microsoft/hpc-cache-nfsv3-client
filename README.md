@@ -91,9 +91,9 @@ The documentation here is based on the script's help file. Use the ``--help`` op
 
 This is the basic command:
 
-  ``flush_file.py [-h] [--threads`` *number-of-threads*``] [--timeout`` *time-in-seconds*``] [--sync] [--verbose]``*export* *server*
+  ``<stream of files to import> | flush_file.py [-h] [--threads`` *number-of-threads*``] [--timeout`` *time-in-seconds*``] [--sync] [--verbose]``*export* *server*
 
-Supply the file or files to write with the standard input stream. Read [Specify the files to write](##specify-the-files-to-write) for details.
+Supply the file or files to write with the standard input stream. Read [Specify the files to write](#specify-the-files-to-write) for details.
 
 ### Required parameters
 
