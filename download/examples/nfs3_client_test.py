@@ -3,7 +3,6 @@
 # bin/nfs3_client_test.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT license.
 #
 '''
 Tests to exercise the HPC Cache NFS3 client. This is not intended

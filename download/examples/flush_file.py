@@ -3,7 +3,6 @@
 # bin/flush_file.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT license.
 #
 '''
 Flush a dirty file to backend core filer

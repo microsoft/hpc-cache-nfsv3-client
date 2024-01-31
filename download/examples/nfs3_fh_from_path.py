@@ -3,7 +3,6 @@
 # bin/nfs3_fh_from_path.py
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT license.
 #
 '''
 Convert a path to a filehandle
