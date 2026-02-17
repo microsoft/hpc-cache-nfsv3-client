@@ -3,6 +3,7 @@ title: Customize Azure HPC Cache write-back with flush_file.py
 description: How to use advanced write-back features to flush specific files from an Azure HPC Cache storage target without flushing the cached content for the entire storage target
 ms.service: hpc-cache
 ---
+Archiving 2026-02-17
 
 # Use the flush_file.py utility for early write-back in Azure HPC Cache
 
